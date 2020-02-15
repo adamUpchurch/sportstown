@@ -1,0 +1,27 @@
+//- layout.pug
+html
+  head
+    title My Site - #{title}
+    block scripts
+      link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous")
+  body
+    nav.navbar.navbar-dark.bg-dark.fixed-top
+        div.container-fluid
+            div.navbar-header.container
+                div.row.justify-content-between
+                    div.col-4
+                        a(href='/').navbar-brand Sports Town
+                    div.col-4
+                        nav.justify-content-end
+                            a.btn.btn-primary(href="/spot") Add your spot
+
+    div.container
+        header.jumbotron
+            h1 Welcome to Sports town!
+            if colleges 
+                a.btn.btn-primary(href="/teams") Add your team
+        block content
+        block foot
+            #footer
+            p Sportstown built by 
+                a(href="http://wwww.twitter.com/theAdamUpchurch") Adam Upchurch

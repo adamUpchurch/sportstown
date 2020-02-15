@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  h1 Submit your spot
+  form(action="/", method="post")
+    input(type='text' placeholder="team")
+    input(type='text' placeholder="restaurant")
+    button Submit

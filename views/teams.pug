@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h1 Teams
+  each team in teams
+    div.row.border-bottom
+      img(src=team.img style={width: "150px", height: "150px"}).col-3
+      div.col
+        h3=team.name
