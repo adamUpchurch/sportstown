@@ -4,13 +4,12 @@ mongoose.set('debug', true); // see queries in terminal
 // does it return promises?
 mongoose.Promise = Promise
 mongoose.connect('mongodb://localhost/sportstown', {
-    keepAlive: true,
-    useMongoClient: true
+    keepAlive: true
 
 });
 
 module.exports = {
-    User: require("./user"),
-    Team: require("./team"),
-    Spot: require('./spot')
+    Users: require("./user"),
+    Teams: require("./team"),
+    Spots: require('./spot')
   }

@@ -28,4 +28,11 @@ var teamSchema = new mongoose.Schema({
     }]
 })
 
+teamSchema
+    .virtual('url')
+    .get(function() {
+        return '/team/' + this._id
+    })
+
+
 module.exports = mongoose.model("Team", teamSchema)

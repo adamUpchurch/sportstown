@@ -1,0 +1,8 @@
+extends layout
+
+block content
+    h1=spot.name
+    if spot.img
+        img(src=spot.img style={width: "150px", height: "150px"}).col-3
+    else
+        img(src="https://amerikicklanghorne.com/wp-content/uploads/2017/04/default-image.jpg" style={width: "150px", height: "150px"}).col-3

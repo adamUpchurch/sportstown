@@ -2,7 +2,12 @@ extends layout
 
 block content
   h1 Submit your spot
-  form(action="/", method="post")
-    input(type='text' placeholder="team")
-    input(type='text' placeholder="restaurant")
-    button Submit
+  if spots
+    ul
+      each spot in spots
+        li=spot.name
+  else 
+    form(action="/search", method="post")
+      input(type='text' name="location" placeholder="City, State or Zip")
+      input(type='text' name="term" placeholder="name of spot")
+      button Search

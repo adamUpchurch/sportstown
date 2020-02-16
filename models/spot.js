@@ -5,10 +5,12 @@ var spotSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    yelpInfo: {
+    yelp: {
+        id: {
+            type: String
+        },
         address: {
-            type: String,
-            required: true
+            type: String
         },
     },
     teams: [{
@@ -16,5 +18,12 @@ var spotSchema = new mongoose.Schema({
         ref: 'team'
     }]
 })
+
+// Virtual 
+spotSchema
+    .virtual('url')
+    .get(function() {
+        return '/spot/' + this._id
+    })
 
 module.exports = mongoose.model("Spot", spotSchema)
