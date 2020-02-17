@@ -4,15 +4,17 @@ module.exports = {
     getSpots: (req, res)=>{
         db.Spots.find()
             .then(spots=>{
+                console.log(spots)
                 res.render('spots', {spots});
             })
             .catch(err=>{
                 res.send(err);
             })
     },
-    getForm: (req, res)=>{
+    getForm: async (req, res)=>{
         if (!req.params.id){
-            res.render('spotForm')
+            let teams = await db.Teams.find().then(teams=> teams).catch(error => error)
+            res.render('spotForm', {teams})
         }
         else {
             db.Spots.findById(req.params.id)

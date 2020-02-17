@@ -1,17 +1,9 @@
 var mongoose = require('mongoose');
 
 var spotSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
     yelp: {
-        id: {
-            type: String
-        },
-        address: {
-            type: String
-        },
+        type: Object,
+        require: true
     },
     teams: [{
         type: mongoose.Schema.Types.ObjectId,

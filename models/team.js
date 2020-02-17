@@ -19,9 +19,9 @@ var teamSchema = new mongoose.Schema({
         type: String,
     },
     sports:[ {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'sport'
     }],
-    googleID: {type: String},
     spots: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'spot'

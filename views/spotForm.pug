@@ -1,13 +1,20 @@
 extends layout
 
 block content
-  h1 Submit your spot
   if spots
-    ul
+    h1 Submit the best place to watch #{team.name} in #{spots[0].location.city}
+    form(action="", method="POST")
+      input(type='hidden' name='team_id' value=team.id)
       each spot in spots
-        li=spot.name
+        label(for=spot)=spot.name
+        input(type='radio' name="yelp" value=spot) 
+      button Submit
   else 
-    form(action="/search", method="post")
-      input(type='text' name="location" placeholder="City, State or Zip")
-      input(type='text' name="term" placeholder="name of spot")
-      button Search
+    h1 Search for your spot
+    form(action="", method="GET")
+      input(type='text' name="location" placeholder="(City, State) or Zip")
+      input(type='text' name="term" placeholder="Name of spot")
+      select(name="team")
+        for team in teams
+          option(value=team.id) #{team.name}
+      button Submit

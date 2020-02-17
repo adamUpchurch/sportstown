@@ -2,7 +2,7 @@ var db = require('../models')
 
 module.exports = {
     getTeams: (req, res) => {
-        db.Teams.find()
+        db.Teams.find().sort({name: 1})
         .then(teams => {
             res.render('teams', {teams})
         })

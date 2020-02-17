@@ -4,6 +4,6 @@ block content
   h1 Spots
   each spot in spots
     div.row.border-bottom
-      img(src=team.img style={width: "150px", height: "150px"}).col-3
+      img(src=spot.yelp.image_url style={width: "150px", height: "150px"}).col-3
       div.col
-        h3=team.name
+        h3=spot.yelp.name

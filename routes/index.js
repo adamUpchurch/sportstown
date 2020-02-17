@@ -1,9 +1,11 @@
 var express = require('express');
 var router = express.Router();
+var url = require('url');
 var teams = require("../controller/team");
 var spots = require("../controller/spot");
 const { Yelp } = require("../config/key")
 const yelp = require('yelp-fusion');
+let db = require('../models')
 
 
 router.route('/')
@@ -28,26 +30,40 @@ router.route('/team/:id/edit')
 router.route('/spots')
  .get(spots.getSpots)
 
-router.route('/spot')
- .get(spots.getForm)
- .post(spots.createSpot)
-
 router.route('/spot/:id')
   .get(spots.getSpot)
 
-router.route('/search')
-  .get((req, res) => {
-    res.render('spotForm')
+router.route('/spot')
+.get(async (req, res) => {
+
+  var {location, term, team} = url.parse(req.url, true).query;
+  if (!location && !term && !team) {
+    let teams = await db.Teams.find().sort({name: 1})
+      .then(teams=> teams).catch(error => error)
+    res.render('spotForm', {teams})
+  } else {
+    const client = yelp.client(Yelp.apiKey)
+    const searchQuery = {location, term}
+    team = await db.Teams.findById(team).then(team => team).catch(error => error)
+    client.search(searchQuery)
+      .then(spots => {
+          console.log(spots.jsonBody.businesses)
+          console.log(team)
+          res.render("spotForm", {
+              spots: spots.jsonBody.businesses,
+              team
+          })
+      })
+  }
   })
-  .post((req, res) => {
-      const client = yelp.client(Yelp.apiKey)
-      client.search({...req.body, limit: 10})
-        .then(spots => {
-            console.log(spots.jsonBody.businesses)
-            res.render("spotForm", {
-                spots: spots.jsonBody.businesses
-            })
-        })
+  .post( async (req, res) => {
+    // team id
+    // yelp data
+    const {team_id, yelp} = req.body
+    await db.Spots.findOneAndUpdate({"yelp.id": yelp.id}, {yelp: JSON.parse(yelp), "$push": { "teams": team_id}}, {upsert: true, returnNewDocument: true})
+    .then(spot => res.redirect(spot.url))
+    .catch(error => res.redirect('spot'))
+
   })
 
 router.route('/spot/:id/edit')

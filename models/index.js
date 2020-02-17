@@ -11,5 +11,6 @@ mongoose.connect('mongodb://localhost/sportstown', {
 module.exports = {
     Users: require("./user"),
     Teams: require("./team"),
-    Spots: require('./spot')
+    Spots: require('./spot'),
+    Sports: require('./sport'),
   }
