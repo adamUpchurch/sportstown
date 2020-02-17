@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1 Sports
+  form(action="/create", method="POST")
+      input(type='text' name="name" placeholder="Sport Name")
+      button Create
+  each sport in sports
+    a(href=sport.url).row.border-bottom
+      h3=sport.name
