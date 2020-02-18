@@ -1,4 +1,30 @@
 extends layout
+block scripts
+    style.
+      /* Always set the map height explicitly to define the size of the div
+      * element that contains the map. */
+      #map {
+        height: 75%;
+        width: auto;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      }
 
 block content
-    
+    #map
+    script.
+        var map;
+
+        function initMap(position) {
+            map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 33.7627459, lng: -84.3581608},
+            zoom: 13
+            });
+        }
+
+block lastScripts
+    script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCA9-FUr9JaJIXDczsR3T_FeBv36yrM73w&callback=initMap" async="" defer="")
