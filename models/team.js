@@ -20,11 +20,11 @@ var teamSchema = new mongoose.Schema({
     },
     sports:[ {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'sport'
+        ref: 'Sport'
     }],
-    spots: [{
+    homefields: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'spot'
+        ref: 'Homefield'
     }]
 })
 

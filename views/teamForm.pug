@@ -1,11 +1,11 @@
 extends layout
 
 block content
-  h1 Submit your spot
+  h1 Create a new team
   form(action="/", method="post")
     input(type='text' name="team" placeholder="Team Name")
     input(type='text' name="hometown" placeholder="Hometown")
-    input(type='text' name="spots" placeholder="Spots")
+    input(type='text' name="homefields" placeholder="Homefields")
     input(type='text' name="mascot" placeholder="Mascot")
     input(type='text' name="sports" placeholder="Sports")
     button Submit

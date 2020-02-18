@@ -11,13 +11,13 @@ var userSchema = new mongoose.Schema({
         unique: true
     },
     googleID: {type: String},
-    spotsAdded: [{
+    homefieldsAdded: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'spot'
+        ref: 'Homefield'
     }],
     teamsAdded: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'team'
+        ref: 'Team'
     }],
 })
 

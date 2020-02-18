@@ -8,7 +8,7 @@ var sportSchema = new mongoose.Schema({
     },
     teams: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'team'
+        ref: 'Team'
     }]
 })
 

@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1 Homefields
+  each homefield in homefields
+    a(href=homefield.url).row.border-bottom
+      if homefield.yelp.image_url
+        img(src=homefield.yelp.image_url style={width: "150px", height: "150px"}).col-3
+      else
+        img(src="https://amerikicklanghorne.com/wp-content/uploads/2017/04/default-image.jpg" style={width: "150px", height: "150px"}).col-3
+      div.col
+        h3=homefield.yelp.name

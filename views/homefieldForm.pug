@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  if newHomeField
+    h4 Submit the best place to watch #{team.name} in #{homefields[0].location.city}
+    each homefield in homefields
+      form(action="", method="POST")
+        input(type='hidden' name='team_id' value=team.id)
+        input(type='hidden' name="yelp" value=homefield) 
+        button=homefield.name
+  
+  else if edit
+    h1 Edit #{homefield.yelp.name}
+    img(src=homefield.yelp.image_url style={width: "150px", height: "auto"}).col-3
+    ul
+      for team in homefield.teams
+        li
+          a(href=team.id) #{team.name}
+    form(action="/", method="DELETE")
+      button DELETE
+
+
+  else 
+    h1 Search for your homefield
+    form(action="", method="GET")
+      input(type='text' name="location" placeholder="(City, State) or Zip")
+      input(type='text' name="term" placeholder="Name of homefield")
+      select(name="team")
+        for team in teams
+          option(value=team.id) #{team.name}
+      button Submit

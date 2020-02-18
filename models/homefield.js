@@ -1,21 +1,21 @@
 var mongoose = require('mongoose');
 
-var spotSchema = new mongoose.Schema({
+var homefieldSchema = new mongoose.Schema({
     yelp: {
         type: Object,
         require: true
     },
     teams: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'team'
+        ref: 'Team'
     }]
 })
 
 // Virtual 
-spotSchema
+homefieldSchema
     .virtual('url')
     .get(function() {
-        return '/spot/' + this._id
+        return '/homefield/' + this._id
     })
 
-module.exports = mongoose.model("Spot", spotSchema)
+module.exports = mongoose.model("Homefield", homefieldSchema)

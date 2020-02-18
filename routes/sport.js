@@ -5,18 +5,17 @@ var express   = require('express'),
 // TODO: 
 
 router.route('/')
- .get(sports.getList)
+ .get(sports.list)
 
 router.route('/create')
-  .get(sports.getForm)
-  .post(sports.createSport)
+  .post(sports.create)
 
-router.route('/sport/:id/edit')
-  .get(sports.getForm)
-  .put(sports.updateSport) // should use Yelp api to re-populate data
-  .delete(sports.deleteSport)
+router.route('/:id/edit')
+  .get(sports.redirectHome)
+  .put(sports.redirectHome) // should use Yelp api to re-populate data
+  .delete(sports.redirectHome)
 
 router.route('/:id')
-  .get(sports.getSport)
+  .get(sports.findbyid)
   
 module.exports = router;

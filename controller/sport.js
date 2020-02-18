@@ -1,10 +1,10 @@
-var db = require('../models');
-
+var db      = require('../models'),
+    Async   = require('async');
 //TODO: SANITIZE DATA BEFORE PUSHING TO DB
 
 module.exports = {
-    getList: (req, res)=>{
-        db.Sports.find()
+    list: (req, res)=>{
+        db.Sport.find().sort({name: 1})
             .then(sports=>{
                 console.log(sports)
                 res.render('sports', {sports});
@@ -13,36 +13,62 @@ module.exports = {
                 res.send(err);
             })
     },
-    getSport: (req, res) => {
-        db.Sports.findById(req.params.id)
+    newForm: (req, res) => {
+        db.Sport.findById(req.params.id)
             .then(sport=> {
                 res.render('sport', {sport})
             })
             // need to rerender form with errors and stuff
             .catch(error => res.send(error))
     },
-    getForm: async (req, res)=>{
+    create: async (req, res)=>{
         res.render('sportForm')
     },
-    createSport: (req, res)=>{
+    editForm: (req, res) => {
+        db.Sport.findById(req.params.id)
+            .then(sport=> {
+                res.render('sport', {sport})
+            })
+            // need to rerender form with errors and stuff
+            .catch(error => res.send(error))
+    },
+    create: (req, res)=>{
         // need to sanitize data
-        db.Sports.create(req.body)
+        db.Sport.create(req.body)
             .then(sport => {
                 res.redirect(sport.url)
             })
             // need to rerender form with errors and stuff
             .catch(error => res.send(error))
     },
-    updateSport: (req, res) => {
-        db.Sports.findByIdAndUpdate(req.params.id, req.body)
+    update: (req, res) => {
+        db.Sport.findByIdAndUpdate(req.params.id, req.body)
             .then(sport => {
                 res.redirect(sport.url)
             })
             .catch(error => res.send(error))
     },
-    deleteSport: (req, res) => {
-        db.Sports.findByIdAndDelete(req.params.id)
+    delete: (req, res) => {
+        db.Sport.findByIdAndDelete(req.params.id)
             .then(_ => res.redirect('/'))
             .catch(error => res.send(error))
+    },
+    findbyid: (req, res) => {
+        Async.parallel({
+                sport: (cb) => db.Sport.findById(req.params.id).exec(cb)
+            }
+            , (error, results) => {
+                const {sport, teams} = results
+                if(error) next(error)
+                if (sport==null) {
+                    var err = new Error("Sport not found")
+                    error.status = 404
+                    return next(error)
+                }
+                res.render('sport', {sport, teams})
+            }
+    )},
+    redirectHome: (req, res) => {
+        req.redirect('/')
     }
 }

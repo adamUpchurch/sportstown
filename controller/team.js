@@ -1,39 +1,47 @@
 var db = require('../models')
 
 module.exports = {
-    getTeams: (req, res) => {
-        db.Teams.find().sort({name: 1})
+    list: (req, res) => {
+        db.Team.find().sort({name: 1})
         .then(teams => {
             res.render('teams', {teams})
         })
         .catch(error => res.send(error))
     },
-    getForm: (req, res) => {
+    newForm: (req, res) => {
         res.render('teamForm')
     },
-    createTeam: (req, res) => {
-        db.Teams.create(req.body)
+    create: (req, res) => {
+        db.Team.create(req.body)
             .then(team => {
                 res.render("team", {team})
             })
             .catch(error => res.send(error))
     },
-    getTeam: (req, res) => {
-        db.Teams.findById(req.params.id)
+    editForm: async(req, res) => {
+        await db.Team.findById(req.params.id)
+        .populate('Homefield')
+        .then(team=> {
+            res.send({team, edit: true})
+        })
+        .catch(error => res.send(error))
+    },
+    update: (req, res) => {
+        db.Team.findByIdAndUpdate(req.params.id, req.body)
+            .then(team => {
+                res.render("team", {team})
+            })
+            .catch(error => res.send(error))
+    },
+    delete: (req, res) => {
+        db.Team.findByIdAndDelete(req.params.id)
+            .then(_ => res.redirect('/'))
+    },
+    findbyid: (req, res) => {
+        db.Team.findById(req.params.id)
         .then(team => {
             res.render("team", {team})
         })
         .catch(error => res.send(error))
-    },
-    updateTeam: (req, res) => {
-        db.Teams.findByIdAndUpdate(req.params.id, req.body)
-            .then(team => {
-                res.render("team", {team})
-            })
-            .catch(error => res.send(error))
-    },
-    deleteTeam: (req, res) => {
-        db.Teams.findByIdAndDelete(req.params.id)
-            .then(_ => res.redirect('/'))
     }
 }

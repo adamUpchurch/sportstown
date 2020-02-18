@@ -1,7 +1,7 @@
 var app             = require('express')(),
     bodyparser      = require('body-parser'),
-    spotRoutes      = require('./routes/spot'),
-    ___sportRoutes     = require('./routes/sport');
+    homefieldRoutes = require('./routes/homefield'),
+    sportRoutes     = require('./routes/sport');
     teamRoutes      = require('./routes/team'),
     userRoutes      = require('./routes/user');
 
@@ -13,7 +13,7 @@ app.set("view engine", "pug")
 app.get('/', (req, res) => res.render('landing'))
 
 
-app.use('/spot', spotRoutes); // TODO
+app.use('/homefield', homefieldRoutes); // TODO
 app.use('/sport', sportRoutes); // TODO
 app.use('/team', teamRoutes); // TODO
 // app.use('/user', userRoutes); // TODO

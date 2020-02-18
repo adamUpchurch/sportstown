@@ -183,5 +183,5 @@ let sports = [
 ]
 
 majorFutbol.forEach(async team => {
-    await db.Teams.create({name: team, sports: "5e49c7d74f8103b5537b72ae"}).catch(error => console.log(error))
+    await db.Team.create({name: team, sports: "5e49c7d74f8103b5537b72ae"}).catch(error => console.log(error))
 })

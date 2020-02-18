@@ -2,19 +2,19 @@ var express = require('express');
 var router = express.Router();
 var teams = require("../controller/team");
 
-router.route('/list')
- .get(teams.getTeams)
-  
-router.route('/:id')
- .get(teams.getTeam)
+router.route('/')
+ .get(teams.list)
+
+ router.route('/create')
+ .get(teams.newForm)
+ .post(teams.create)
 
 router.route('/:id/edit')
- .get(teams.getForm)
- .put(teams.updateTeam)
- .delete(teams.deleteTeam)
+ .get(teams.editForm) // need to create form
+ .put(teams.update) // todo
+ .delete(teams.delete) // todo
  
- router.route('/')
- .get(teams.getForm)
- .post(teams.createTeam)
+router.route('/:id')
+ .get(teams.findbyid)
   
 module.exports = router;

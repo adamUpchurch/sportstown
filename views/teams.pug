@@ -2,6 +2,7 @@ extends layout
 
 block content
   h1 Teams
+  a.btn.btn-primary(href="/team/create") Add your team
   each team in teams
     a(href=team.url).row.border-bottom
       if team.img

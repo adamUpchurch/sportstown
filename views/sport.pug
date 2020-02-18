@@ -3,4 +3,5 @@ extends layout
 block content
     h1=sport.name
     ul
-      li List of the teams under this sport
+      for team in teams
+        li=team.name
