@@ -8,7 +8,11 @@ var homefieldSchema = new mongoose.Schema({
     teams: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Team'
-    }]
+    }],
+    geometry: {
+        type: "Object",
+        require: true
+    },
 })
 
 // Virtual 

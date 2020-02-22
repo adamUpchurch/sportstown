@@ -57,12 +57,42 @@ module.exports = {
     create: async (req, res) => {
         // team id
         // yelp data
+        console.log(req.body)
         var {team_id, yelp} = req.body
-        yelp = JSON.parse(yelp)
-        console.log(yelp)
-        await db.Homefield.findOneAndUpdate({"yelp.id": yelp.id}, {yelp, "$push": { "teams": team_id}}, {upsert: true, returnNewDocument: true})
-        .then(homefield => res.redirect(homefield.url))
-        .catch(error => res.redirect('/'))
+        var homefield = {yelp: JSON.parse(yelp)}
+        
+        homefield.geometry =  {
+            "type": "Point",
+            coordinates: [
+                homefield.yelp.coordinates.latitude,
+                homefield.yelp.coordinates.longitude,
+                7.4
+            ],
+            content: `<h1>${yelp.name} </h1> <a href="${yelp.url}">Go to their yelp</a>`,
+        }
+
+        console.log(homefield)
+    
+        await db.Homefield.findOneAndUpdate({
+                "yelp.id": homefield.yelp.id
+            }, 
+            {
+            yelp: homefield.yelp,
+            geometry: homefield.geometry,
+            "$push": { 
+                "teams": team_id
+            }
+            }, 
+            {
+                upsert: true, 
+                returnNewDocument: true
+            })
+            .then(async homefield => {
+                await db.Team.findByIdAndUpdate(team_id, {"$push": {"homefields": homefield._id}})
+                .catch(error=> console.log(error))
+                res.redirect(homefield.url)
+            })
+            .catch(error => res.redirect('/'))
     },
     editForm: async(req, res) => {
         await db.Homefield.findById(req.params.id)

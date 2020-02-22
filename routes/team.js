@@ -9,11 +9,14 @@ router.route('/')
  .get(teams.newForm)
  .post(teams.create)
 
+router.route('/map/:id')
+ .get(teams.findByidForMap)
+
 router.route('/:id/edit')
  .get(teams.editForm) // need to create form
  .put(teams.update) // todo
  .delete(teams.delete) // todo
- 
+
 router.route('/:id')
  .get(teams.findbyid)
   

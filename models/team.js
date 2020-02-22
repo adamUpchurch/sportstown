@@ -18,10 +18,7 @@ var teamSchema = new mongoose.Schema({
     image: {
         type: String,
     },
-    sports:[ {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Sport'
-    }],
+    sports:[],
     homefields: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Homefield'
@@ -34,5 +31,14 @@ teamSchema
         return '/team/' + this._id
     })
 
+var autoPopulateLead = function(next) {
+        this.populate('homefields');
+        this.populate('sport');
+        next();
+      };
+
+      teamSchema.
+  pre('findOne', autoPopulateLead).
+  pre('find', autoPopulateLead);
 
 module.exports = mongoose.model("Team", teamSchema)
