@@ -18,7 +18,6 @@ var teamSchema = new mongoose.Schema({
     image: {
         type: String,
     },
-    sports:[],
     homefields: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Homefield'
