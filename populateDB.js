@@ -1,12 +1,5 @@
 let db = require('./models/index')
 
-// db.Team.create({
-//     name: "Atlanta Hawks",
-//     city: "Atlanta",
-//     mascot: "Hawk",
-//     image: "https://amerikicklanghorne.com/wp-content/uploads/2017/04/default-image.jpg"
-// })
-
 
 const nbaTeams = [
 "Atlanta Hawks",
@@ -182,6 +175,21 @@ let sports = [
 "tennis"
 ]
 
+nbaTeams.forEach(async team => {
+    await db.Team.create({name: team}).catch(error => console.log(error))
+})
+nflTeams.forEach(async team => {
+    await db.Team.create({name: team}).catch(error => console.log(error))
+})
+mlbTeams.forEach(async team => {
+    await db.Team.create({name: team}).catch(error => console.log(error))
+})
+nflTeams.forEach(async team => {
+    await db.Team.create({name: team}).catch(error => console.log(error))
+})
 majorFutbol.forEach(async team => {
-    await db.Team.create({name: team, sports: "5e49c7d74f8103b5537b72ae"}).catch(error => console.log(error))
+    await db.Team.create({name: team}).catch(error => console.log(error))
+})
+sports.forEach(async team => {
+    await db.Team.create({name: team}).catch(error => console.log(error))
 })

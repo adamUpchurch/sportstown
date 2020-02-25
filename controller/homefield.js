@@ -1,7 +1,7 @@
 var db      = require('../models'),
     url     = require('url'),
     yelp    = require('yelp-fusion'),
-    {Yelp}    = require('../config/key')
+    {Yelp}    = require('../config/keys')
 
 
 module.exports = {
@@ -61,6 +61,9 @@ module.exports = {
         var {team_id, yelp} = req.body
         var homefield = {yelp: JSON.parse(yelp)}
         
+        // extracting Yelp location data for easier data parsing
+        // is this smart or stupid? lol
+        // well I guess it's good to put in type and content
         homefield.geometry =  {
             "type": "Point",
             coordinates: [
@@ -68,7 +71,7 @@ module.exports = {
                 homefield.yelp.coordinates.longitude,
                 7.4
             ],
-            content: `<h1>${yelp.name} </h1> <a href="${yelp.url}">Go to their yelp</a>`,
+            content: `<h1>${yelp.name}</h1> <a href="${yelp.url}">Go to their yelp</a>`,
         }
 
         console.log(homefield)
@@ -88,6 +91,7 @@ module.exports = {
                 returnNewDocument: true
             })
             .then(async homefield => {
+                console.log("Pusing homefield to team.homefields")
                 await db.Team.findByIdAndUpdate(team_id, {"$push": {"homefields": homefield._id}})
                 .catch(error=> console.log(error))
                 res.redirect(homefield.url)

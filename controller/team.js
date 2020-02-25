@@ -52,8 +52,8 @@ module.exports = {
         .populate("homefields")
         .then(team => {
             console.log(team)
-            let geometries = team.homefields.map(homefield => homefield.geometry)
-            res.send(geometries)
+            // let geometries = team.homefields.map(homefield => homefield.geometry)
+            res.send({team})
         })
         .catch(error => res.send(error))
     }
