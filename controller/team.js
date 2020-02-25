@@ -38,11 +38,9 @@ module.exports = {
             .then(_ => res.redirect('/'))
     },
     findbyid: (req, res) => {
-        console.log(req)
         db.Team.findById(req.params.id)
         .populate("homefields")
         .then(team => {
-            console.log(team)
             res.render("team", {team})
         })
         .catch(error => res.send(error))
@@ -51,7 +49,6 @@ module.exports = {
         await db.Team.findById(req.params.id)
         .populate("homefields")
         .then(team => {
-            console.log(team)
             // let geometries = team.homefields.map(homefield => homefield.geometry)
             res.send({team})
         })

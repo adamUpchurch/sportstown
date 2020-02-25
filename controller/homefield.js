@@ -6,10 +6,8 @@ var db      = require('../models'),
 
 module.exports = {
     list: (req, res)=>{
-        console.log('Rendering homefield list')
         db.Homefield.find().sort({name: 1})
             .then(homefields=> {
-                console.log(homefields)
                 res.render('homefields', {homefields})}
                 )
             .catch(err=> res.send(err))
@@ -24,7 +22,6 @@ module.exports = {
     },
     newForm: async (req, res) => {
         var {location, term, team} = url.parse(req.url, true).query;
-        console.log(req.url)
         if (!location && !term && !team) {
           location = location ? location : "Yo, need a city or zip!"
           term = term ? term : "Where is your homefield?"
@@ -43,8 +40,6 @@ module.exports = {
                 if (!locations) {
                     res.render('homefieldForm', {error: "no locations found"})
                 }
-                console.log("Businesses", homefields.jsonBody.businesses)
-                console.log("TEAM:", team)
 
                 res.render("homefieldForm", {
                     homefields: homefields.jsonBody.businesses,
@@ -55,9 +50,6 @@ module.exports = {
         }
     },
     create: async (req, res) => {
-        // team id
-        // yelp data
-        console.log(req.body)
         var {team_id, yelp} = req.body
         var homefield = {yelp: JSON.parse(yelp)}
         
@@ -71,10 +63,8 @@ module.exports = {
                 homefield.yelp.coordinates.longitude,
                 7.4
             ],
-            content: `<h1>${yelp.name}</h1> <a href="${yelp.url}">Go to their yelp</a>`,
+            content: `<h1>${homefield.yelp.name}</h1> <a href="${homefield.yelp.url}">Go to their yelp</a>`,
         }
-
-        console.log(homefield)
     
         await db.Homefield.findOneAndUpdate({
                 "yelp.id": homefield.yelp.id
@@ -90,11 +80,23 @@ module.exports = {
                 upsert: true, 
                 returnNewDocument: true
             })
-            .then(async homefield => {
-                console.log("Pusing homefield to team.homefields")
-                await db.Team.findByIdAndUpdate(team_id, {"$push": {"homefields": homefield._id}})
-                .catch(error=> console.log(error))
-                res.redirect(homefield.url)
+            .then(homefield => {
+                let team = db.Team.findByIdAndUpdate(
+                team_id, 
+                {
+                    "$push": {
+                        "homefields": homefield._id
+                    }
+                }, 
+                {
+                    upsert: true, 
+                    returnNewDocument: true
+                })
+                    .then(team => {
+                        return team
+                    })
+                    .catch(error=> console.log(error))
+                res.redirect(`/?team=${team._id}`)
             })
             .catch(error => res.redirect('/'))
     },

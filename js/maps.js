@@ -7,7 +7,6 @@ function getUrlVars() {
 }
 
 let {team} = getUrlVars('team')
-console.log("This is the team id: ", team)
 var map;
 var superchargers = [
   {
@@ -38,9 +37,7 @@ function getLocations(teamid) {
             .then(response => {
               return response.json()}
               )
-            .then(({team}) => {
-              console.log( "my team: ", team)
-              return team});
+            .then(({team}) => team);
 }
 
 
@@ -52,7 +49,6 @@ function initMap() {
 
   getLocations(team).then(team =>{ 
     team.homefields.forEach(function(sc) {
-    console.log(sc)
     var marker = new google.maps.Marker({
       position: new google.maps.LatLng(sc.geometry.coordinates[0], sc.geometry.coordinates[1]),
       icon: {

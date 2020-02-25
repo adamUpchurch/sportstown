@@ -42,7 +42,6 @@ app.get("/", async (req, res) => {
                     longitude: -121.18621
                     }
                 ]); // delete this locations when it works
-                console.log(team)
                 res.render("landing", {teams, team, locations});
             })
             .catch(error => res.render("landing"));
