@@ -17,7 +17,7 @@ block scripts
 block content
     h1 Choose your team
     form(action="", method="GET")
-      select(name="team")
+      select(name="team_id")
         for team in teams
           option(value=team.id) #{team.name}
       button Submit

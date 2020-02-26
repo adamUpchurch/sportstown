@@ -1,54 +1,32 @@
 function getUrlVars() {
     var vars = {};
-    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+    window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
         vars[key] = value;
     });
     return vars;
 }
 
-let {team} = getUrlVars('team')
-var map;
-var superchargers = [
-  {
-    location: 'Fremont',
-    latitude: 37.49267,
-    longitude: -121.94409
-  },
-  {
-    location: 'Folsom',
-    latitude: 38.64392,
-    longitude: -121.18621
-  },
-  {
-    location: 'Gilroy',
-    latitude: 37.02615,
-    longitude: -121.56487
-  },
-  {
-    location: 'Harris Ranch',
-    latitude: 36.25316,
-    longitude: -120.23853
-  }
-];
+let {team_id} = getUrlVars('team_id')
 
 function getLocations(teamid) {
     const url='/team/map/' + teamid;
     return fetch(url)
-            .then(response => {
-              return response.json()}
-              )
-            .then(({team}) => team);
+            .then((response) => response.json())
+            .then(({locations}) => {
+              console.log(locations)
+              addMarker(locations)
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
 }
 
+var team = getLocations(team_id)
 
-function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: { lat: 36.0907578, lng: -119.5948303 },
-    zoom: 7
-  })
+var map;
 
-  getLocations(team).then(team =>{ 
-    team.homefields.forEach(function(sc) {
+function addMarker(team) {
+  team.forEach(function(sc) {
     var marker = new google.maps.Marker({
       position: new google.maps.LatLng(sc.geometry.coordinates[0], sc.geometry.coordinates[1]),
       icon: {
@@ -59,5 +37,15 @@ function initMap() {
       title: sc.location,
       animation: google.maps.Animation.DROP
     })
-  })})
+  })
+}
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: { lat: 36.0907578, lng: -119.5948303 },
+    zoom: 3
+  })
+  getLocations(team_id)
+
+  
 }
