@@ -4,10 +4,15 @@ var express     = require('express'),
  
 // TODO: 
 
+const authCheck = (req, res, next) => {
+  if(!req.user) res.redirect('/auth/login')
+  else next()
+}
+
 router.route('/')
  .get(homefields.list)
 
-router.route('/create')
+router.route('/create', authCheck)
   .get(homefields.newForm)
   .post(homefields.create)
   

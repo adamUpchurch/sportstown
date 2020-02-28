@@ -9,6 +9,10 @@ var userSchema = new mongoose.Schema({
         type: String,
         unique: true
     },
+    admin: {
+        type: Boolean,
+        unique: true
+    },
     googleID: {type: String, unique: true, sparse: true},
     facebookID: {type: String, unique: true, sparse: true},
     twitterID: {type: String, unique: true, sparse: true},

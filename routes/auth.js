@@ -4,7 +4,7 @@ var express     = require('express'),
 
 router.get('/logout', (req, res) => {
     req.logout();
-    res.redirect('/');
+    res.redirect('..');
 })
 
 router.get('/login', (req, res) => res.render("login"))

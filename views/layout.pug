@@ -5,7 +5,7 @@ html
     link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous")
     block scripts
   body
-    nav.navbar.navbar-dark.bg-dark.fixed-top
+    nav.navbar.navbar-dark.bg-dark
         div.container-fluid
             div.navbar-header.container
                 div.row.justify-content-between
@@ -13,19 +13,21 @@ html
                         a(href='/').navbar-brand Sports Town
                     div.col-4
                         nav.justify-content-end
-                            a.btn.btn-primary(href="/homefield/create") Add your homefield
+                            if user
+                                a.btn.btn-primary(href="/homefield/create") Add your homefield
+                            else
+                                a.btn.btn-primary(href="/auth/google") Google
 
     div.container
-        header.jumbotron
-            h1 Welcome to Sportstown!
-            if colleges 
-                a.btn.btn-primary(href="/teams") Add your team
         block content
         block lastScripts
         block foot
             #footer
-            a(href="/team") Teams
-            a(href="/homefield") Homefields
-            a(href="/sport") Sports 
+            if user && user.admin === true
+              a(href="/team") Teams
+              a(href="/homefield") Homefields
+              a(href="/sport") Sports 
+            if user
+              a(href="/auth/logout") logout
             p Sportstown built by 
-                a(href="http://wwww.twitter.com/theAdamUpchurch") Adam Upchurch
+              a(href="http://www.twitter.com/theAdamUpchurch") Adam Upchurch
