@@ -21,5 +21,11 @@ homefieldSchema
     .get(function() {
         return '/homefield/' + this._id
     })
+// Virtual 
+homefieldSchema
+    .virtual('content')
+    .get(function() {
+        return `<h3>${this.yelp.name}</h3> <a href="${this.yelp.url}" target="_blank">Go to their yelp</a>`
+    })
 
 module.exports = mongoose.model("Homefield", homefieldSchema)

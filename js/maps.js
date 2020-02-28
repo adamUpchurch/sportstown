@@ -27,6 +27,9 @@ var map;
 
 function addMarker(team) {
   team.forEach(function(sc) {
+    var infowindow = new google.maps.InfoWindow({
+      content: sc.geometry.content
+    });
     var marker = new google.maps.Marker({
       position: new google.maps.LatLng(sc.geometry.coordinates[0], sc.geometry.coordinates[1]),
       icon: {
@@ -37,6 +40,9 @@ function addMarker(team) {
       title: sc.location,
       animation: google.maps.Animation.DROP
     })
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
   })
 }
 

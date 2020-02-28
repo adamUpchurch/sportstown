@@ -63,7 +63,8 @@ module.exports = {
                 homefield.yelp.coordinates.longitude,
                 7.4
             ],
-            content: `<h1>${homefield.yelp.name}</h1> <a href="${homefield.yelp.url}">Go to their yelp</a>`,
+            
+            content: `<h5>${homefield.yelp.name}</h5> <a href="${homefield.yelp.url}" target="_blank">Go to their yelp</a>`,
         }
     
         await db.Homefield.findOneAndUpdate({
@@ -78,21 +79,26 @@ module.exports = {
             }, 
             {
                 upsert: true, 
+                new: true,
                 returnNewDocument: true
             })
-            .then(homefield => {
+            .then(foundHomefield => {
+                console.log("adding homefield to the teammmmm")
+                console.log(foundHomefield._id)
                 let team = db.Team.findByIdAndUpdate(
-                team_id, 
-                {
-                    "$push": {
-                        "homefields": homefield._id
-                    }
-                }, 
-                {
-                    upsert: true, 
-                    returnNewDocument: true
-                })
+                        team_id, 
+                        {
+                            "$push": {
+                                "homefields": foundHomefield._id
+                            }
+                        }, 
+                        {
+                            upsert: true,
+                            new: true,  
+                            returnNewDocument: true
+                        })
                     .then(team => {
+                        console.log("NEW TEAaaaaaaaaam")
                         return team
                     })
                     .catch(error=> console.log(error))
