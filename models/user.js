@@ -1,16 +1,17 @@
 var mongoose = require('mongoose');
 
 var userSchema = new mongoose.Schema({
-    name: {
+    username: {
         type: String,
         required: true
     },
     email: {
         type: String,
-        required: true,
         unique: true
     },
-    googleID: {type: String},
+    googleID: {type: String, unique: true, sparse: true},
+    facebookID: {type: String, unique: true, sparse: true},
+    twitterID: {type: String, unique: true, sparse: true},
     homefieldsAdded: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Homefield'
