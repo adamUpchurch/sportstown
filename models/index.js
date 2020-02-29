@@ -1,11 +1,10 @@
-var keys = require('../config/keys')
+// var keys = require('../config/keys')
 
 var mongoose = require("mongoose");
 mongoose.set("debug", true); // see queries in terminal
-
 // does it return promises?
 mongoose.Promise = Promise
-mongoose.connect('mongodb+srv://tucker:osGBSTIS8zfKEbJp@startupathon-dd6pk.mongodb.net/sportstown?retryWrites=true&w=majority', {
+mongoose.connect("mongodb+srv://tucker:osGBSTIS8zfKEbJp@startupathon-dd6pk.mongodb.net/sportstown?retryWrites=true", {
     keepAlive: true
 });
 

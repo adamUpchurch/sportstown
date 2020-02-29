@@ -1,7 +1,7 @@
 var db      = require('../models'),
     url     = require('url'),
-    yelp    = require('yelp-fusion'),
-    {Yelp}    = require('../config/keys')
+    // {Yelp}    = require('../config/keys'),
+    yelp    = require('yelp-fusion');
 
 
 module.exports = {
@@ -32,7 +32,7 @@ module.exports = {
         } 
         
         else {
-          const client = yelp.client(Yelp.apiKey)
+          const client = yelp.client(process.env.YELP_API_KEY)
           team = await db.Team.findById(team).then(team => team).catch(error => error)
           client.search({location, term})
             .then(homefields => {

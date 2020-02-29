@@ -8,8 +8,8 @@ var app           = require("express")(),
   authRoutes      = require("./routes/auth"),
   db              = require("./models/index"),
   passportSetup   = require('./config/passport'),
-  cookieSession   = require('cookie-session'),
-  {Session}       = require('./config/keys');
+  // {Session}       = require('./config/keys'),
+  cookieSession   = require('cookie-session');
 
 const port      = 8000;
 
@@ -19,7 +19,7 @@ app.set("view engine", "pug");
 
 app.use(cookieSession({
   maxAge: 14*24*60*60*1000,
-  keys:[Session.cookieKey]
+  keys:[process.env.SESSION_COOKIE_KEY]
 }))
 
 app.use(passport.initialize());

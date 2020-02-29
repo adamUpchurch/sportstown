@@ -12,12 +12,10 @@ passport.deserializeUser((id, done) => User.findById(id).then(user => done(null,
 passport.use(
     new GoogleStrategy({
         // options for google strategy
-        clientID: Passport.google.clientID,
-        clientSecret: Passport.google.clientSecret,
+        clientID: process.env.PASSPORT_GOOGLE_CLIENT_ID,
+        clientSecret: process.env.PASSPORT_GOOGLE_CLIENT_SECRET,
         callbackURL: '/auth/google/redirect'
     }, (accessToken, refreshToken, profile, done) => {
-        console.log('Passport~~~~~~~~~~~~~~')
-        console.log(profile)
         // passport callback function
         var user = new User({
             username: profile.displayName,
