@@ -1,3 +1,6 @@
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 var app           = require("express")(),
   bodyparser      = require("body-parser"),
   passport        = require("passport"),
@@ -11,7 +14,7 @@ var app           = require("express")(),
   // {Session}       = require('./config/keys'),
   cookieSession   = require('cookie-session');
 
-const port      = 8000;
+const port      = process.env.PORT ? process.env.PORT : 8022;
 
 
 app.use(bodyparser.urlencoded({ extended: true }));
