@@ -6,8 +6,12 @@ block content
     each homefield in homefields
       form(action="", method="POST")
         input(type='hidden' name='team_id' value=team.id)
-        input(type='hidden' name="yelp" value=homefield) 
-        button=homefield.name
+        input(type='hidden' name="yelp" value=homefield)
+        .card-body
+          img(src=homefield.image_url alt="..." style="width: 150px; height: auto; object-fit: cover;")
+          h5.card-title=homefield.name
+          p.card-text=homefield.location.address1
+          button Add as homefield
   
   else if edit
     h1 Edit #{homefield.yelp.name}
@@ -23,9 +27,11 @@ block content
   else 
     h1 Search for your homefield
     form(action="", method="GET")
-      input(type='text' name="location" placeholder="(City, State) or Zip")
-      input(type='text' name="term" placeholder="Name of homefield")
-      select(name="team")
-        for team in teams
-          option(value=team.id) #{team.name}
-      button Submit
+      select.custom-select(name="team")
+            for team in teams
+              option(value=team.id) #{team.name}
+      .input-group
+        input.form-control(type='text' name="location" placeholder="(City, State) or Zip")
+        input.form-control(type='text' name="term" placeholder="Name of homefield")
+        .input-group-append
+          button.btn.btn-outline-secondary Submit

@@ -15,12 +15,13 @@ block scripts
       }
 
 block content
-    h1 Choose your team
+    h2 Choose your team
     form(action="", method="GET")
-      select(name="team_id")
-        for team in teams
-          option(value=team.id) #{team.name}
-      button Submit
+      div.input-group
+        select.custom-select(name="team_id")
+          for team in teams
+            option(value=team.id) #{team.name}
+        button.btn.btn-outline-secondary Submit
     #map
     script
       include ../js/maps.js

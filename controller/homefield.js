@@ -40,9 +40,8 @@ module.exports = {
                 if (!locations) {
                     res.render('homefieldForm', {error: "no locations found"})
                 }
-
                 res.render("homefieldForm", {
-                    homefields: homefields.jsonBody.businesses,
+                    homefields: homefields.jsonBody.businesses.slice(0, 4),
                     team,
                     newHomeField: true
                 })

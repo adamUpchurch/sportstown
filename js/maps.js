@@ -47,10 +47,20 @@ function addMarker(team) {
 }
 
 function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: { lat: 36.0907578, lng: -119.5948303 },
-    zoom: 3
+  var lat;
+  var lng;
+
+  navigator.geolocation.getCurrentPosition(function(position) {
+    console.log(position)
+    lat = position.coords.latitude
+    lng = position.coords.longitude
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: { lat: lat ? lat : 36.0907578, lng: lng ? lng : -119.5948303 },
+      zoom: 11
+    })
   })
+  console.log(lat, lng)
+
   getLocations(team_id)
 
   
