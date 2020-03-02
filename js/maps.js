@@ -47,22 +47,22 @@ function addMarker(team) {
 }
 
 function initMap() {
-  var lat;
-  var lng;
-  if ("geolocation" in navigator) {
+  var lat = 33.749
+  var lng = -84.3880
+  if (null) {
     /* geolocation is available */
     navigator.geolocation.getCurrentPosition(function(position) {
       console.log(position)
-      lat = position.coords.latitude
-      lng = position.coords.longitude
-    })
-  } else {
-    /* geolocation IS NOT available */
-    map = new google.maps.Map(document.getElementById('map'), {
-      center: { lat: 36.0907578, lng: -119.5948303 },
-      zoom: 11
+      lat = position.coords.latitude ? position.coords.latitude : 36.0907578
+      lng = position.coords.longitude ? position.coords.longitude : -119.5948303
+      /* geolocation IS NOT available */
     })
   }
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: { lat, lng },
+    zoom: 11
+  })
   console.log(lat, lng)
 
   getLocations(team_id)
