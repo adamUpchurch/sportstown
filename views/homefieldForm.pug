@@ -4,14 +4,16 @@ block content
   if newHomeField
     h4 Submit the best place to watch #{team.name} in #{homefields[0].location.city}
     each homefield in homefields
-      form(action="", method="POST")
-        input(type='hidden' name='team_id' value=team.id)
-        input(type='hidden' name="yelp" value=homefield)
-        .card-body
-          img(src=homefield.image_url alt="..." style="width: 150px; height: auto; object-fit: cover;")
-          h5.card-title=homefield.name
-          p.card-text=homefield.location.address1
-          button Add as homefield
+      .card
+        form(action="", method="POST")
+          input(type='hidden' name='team_id' value=team.id)
+          input(type='hidden' name="yelp" value=homefield)
+          .card-body
+            img.card-img-top(src=homefield.image_url alt="..." style="width: 150px; height: auto; object-fit: cover;")
+            .card-body
+              h5.card-title=homefield.name
+              p.card-text=homefield.location.address1
+              button Add as homefield
   
   else if edit
     h1 Edit #{homefield.yelp.name}

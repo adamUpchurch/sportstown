@@ -7,25 +7,20 @@ block scripts
         height: 75%;
         width: auto;
       }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      }
 
 block content
-    h2 Choose your team
+    h2 Find the best places to watch your team.
     form(action="", method="GET")
       div.input-group
         select.custom-select(name="team_id")
           for team in teams
             option(value=team.id) #{team.name}
-        button.btn.btn-outline-secondary Submit
+        button.search-homefield-button
+          span Find Homefields
     #map
     script
-      include ../js/maps.js
+      include ../public/js/maps.js
 
 block lastScripts
     
-    script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCA9-FUr9JaJIXDczsR3T_FeBv36yrM73w&callback=initMap" async="" defer="")
+    script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQtzTa4vjQiC2KGAZStPGiD6MHhRLZwRo&callback=initMap" async="" defer="")

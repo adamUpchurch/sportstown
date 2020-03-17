@@ -1,7 +1,8 @@
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
-var app           = require("express")(),
+var express        = require("express"),
+  app             = express(),
   bodyparser      = require("body-parser"),
   passport        = require("passport"),
   homefieldRoutes = require("./routes/homefield"),
@@ -19,6 +20,7 @@ const port      = process.env.PORT ? process.env.PORT : 8022;
 
 app.use(bodyparser.urlencoded({ extended: true }));
 app.set("view engine", "pug");
+app.use(express.static(__dirname + '/public/'));
 
 app.use(cookieSession({
   maxAge: 14*24*60*60*1000,

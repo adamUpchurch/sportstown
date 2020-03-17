@@ -3,6 +3,8 @@ html
   head
     title My Site - #{title}
     link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous")
+    style
+      include ../public/css/main.css
     block scripts
   body
     nav.navbar.navbar-dark.bg-dark
@@ -14,9 +16,9 @@ html
                     div.col-4
                         nav.justify-content-end
                             if user
-                                a.btn.btn-primary(href="/homefield/create") Add your homefield
+                                a.btn(href="/homefield/create") Add a homefield
                             else
-                                a.btn.btn-primary(href="/auth/google") Google
+                                a.btn(href="/auth/login") Login
 
     div.container
         block content
