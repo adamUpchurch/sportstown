@@ -4,18 +4,18 @@ block scripts
       /* Always set the map height explicitly to define the size of the div
       * element that contains the map. */
       #map {
-        height: 75%;
+        height: 500px;
         width: auto;
       }
 
 block content
-    h2 Find the best places to watch your team.
+    h3 Find the best place to watch your team.
     form(action="", method="GET")
       div.input-group
         select.custom-select(name="team_id")
           for team in teams
             option(value=team.id) #{team.name}
-        button.search-homefield-button
+        button.waves-effect.waves-light.btn.green
           span Find Homefields
     #map
     script

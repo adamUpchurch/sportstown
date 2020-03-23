@@ -2,23 +2,23 @@
 html
   head
     title My Site - #{title}
-    link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous")
+    link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous")  
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js")
     style
       include ../public/css/main.css
     block scripts
-  body
-    nav.navbar.navbar-dark.bg-dark
-        div.container-fluid
-            div.navbar-header.container
-                div.row.justify-content-between
-                    div.col-4
-                        a(href='/').navbar-brand Sports Town
-                    div.col-4
-                        nav.justify-content-end
-                            if user
-                                a.btn(href="/homefield/create") Add a homefield
-                            else
-                                a.btn(href="/auth/login") Login
+  body.container
+    nav.red
+      .nav-wrapper
+        a.logo(href='/') SPORTSTOWN
+        ul.right.ride-on-med-and-down
+          if user
+              li 
+                a.waves-effect.waves-light.btn.blue(href="/homefield/create") Add a homefield
+          else
+              li 
+                a.waves-effect.waves-light.btn.blue(href="/auth/login") Login
 
     div.container
         block content

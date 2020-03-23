@@ -4,8 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "watch:sass": "sass public/sass/main.scss:public/css/main.css -w",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node app.js --parallel devserver watch:sass"
   },
   "author": "",
   "license": "ISC",
@@ -23,5 +24,12 @@
     "passport-google-oauth": "^2.0.0",
     "pug": "^2.0.4",
     "yelp-fusion": "^3.0.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.4",
+    "concat": "^1.0.3",
+    "node-sass": "^4.5.3",
+    "npm-run-all": "^4.1.1",
+    "postcss-cli": "^4.1.1"
   }
 }
