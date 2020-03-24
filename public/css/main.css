@@ -34,7 +34,7 @@ p {
 .logo:hover {
   text-decoration: none;
   font-size: 3.2rem;
-  color: #fff;
+  color: var(--color-grey-light-1);
   opacity: 0.9;
 }
 
@@ -45,6 +45,14 @@ h3 {
 
 button span {
   margin-left: 10px;
+}
+
+#footer {
+  padding-top: 50px;
+}
+
+.card-text {
+  color: var(--color-grey-dark-1);
 }
 
 .social-button {

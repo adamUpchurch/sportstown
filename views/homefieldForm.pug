@@ -1,22 +1,32 @@
 extends layout
+block scripts
+  link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css")
+  link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
 
 block content
   if newHomeField
-    h4 Submit the best place to watch #{team.name} in #{homefields[0].location.city}
-    each homefield in homefields
-      .card
-        form(action="", method="POST")
-          input(type='hidden' name='team_id' value=team.id)
-          input(type='hidden' name="yelp" value=homefield)
-          .card-body
-            img.card-img-top(src=homefield.image_url alt="..." style="width: 150px; height: auto; object-fit: cover;")
-            .card-body
-              h5.card-title=homefield.name
-              p.card-text=homefield.location.address1
-              button Add as homefield
-  
+    h3 The best place to watch #{team.name} in #{homefields[0].location.city} is...
+    .container(style='display: flex; flex-direction: row; flex-wrap: wrap;').s12.l9
+      each homefield in homefields
+        .card(style="margin: 10px")
+          .card-image
+            img(src=homefield.image_url alt="...")
+            form.my-form(action="", method="POST")
+              input(type='hidden' name='team_id' value=team.id)
+              input(type='hidden' name="yelp" value=homefield)
+              button.btn-floating.halfway-fab.waves-effect.waves-light.red
+                i.fa.fa-plus.fa-5x
+          .card-content
+            h5.card-title=homefield.name
+            p.card-text=homefield.location.address1          
+          .card-action
+            a(href=homefield.url target="_blank") Go to #{homefield.name}'s yelp.
+
+            
+
+    
   else if edit
-    h1 Edit #{homefield.yelp.name}
+    h3 Edit #{homefield.yelp.name}
     img(src=homefield.yelp.image_url style={width: "150px", height: "auto"}).col-3
     ul
       for team in homefield.teams
@@ -27,13 +37,13 @@ block content
 
 
   else 
-    h1 Search for your homefield
+    h3 Search for your homefield
     form(action="", method="GET")
       select.custom-select(name="team")
             for team in teams
               option(value=team.id) #{team.name}
       .input-group
         input.form-control(type='text' name="location" placeholder="(City, State) or Zip")
-        input.form-control(type='text' name="term" placeholder="Name of homefield")
+        input.form-control(type='text' name="term" placeholder="Name of the place")
         .input-group-append
           button.btn.btn-outline-secondary Submit

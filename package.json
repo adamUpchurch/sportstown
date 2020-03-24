@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "watch:sass": "sass public/sass/main.scss:public/css/main.css -w",
+    "watch:sass": "sass --watch public/sass/main.scss:public/css/main.css",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js --parallel devserver watch:sass"
   },
