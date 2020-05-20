@@ -5,22 +5,26 @@ block scripts
 
 block content
   if newHomeField
-    h3 The best place to watch #{team.name} in #{homefields[0].location.city} is...
+    h3 The best place to watch 
+      span(style={color: 'Grey'}) #{team.name} 
+      | in 
+      span(style={color: 'Grey'}) #{homefields[0].location.city} 
+      | is...
     .container(style='display: flex; flex-direction: row; flex-wrap: wrap;').s12.l9
       each homefield in homefields
         .card(style="margin: 10px")
           .card-image
             img(src=homefield.image_url alt="...")
-            form.my-form(action="", method="POST")
-              input(type='hidden' name='team_id' value=team.id)
-              input(type='hidden' name="yelp" value=homefield)
-              button.btn-floating.halfway-fab.waves-effect.waves-light.red
-                i.fa.fa-plus.fa-5x
+                //- i.fa.fa-plus.fa-5x
           .card-content
             h5.card-title=homefield.name
             p.card-text=homefield.location.address1          
-          .card-action
             a(href=homefield.url target="_blank") Go to #{homefield.name}'s yelp.
+          .card-action
+            form.my-form(action="", method="POST")
+              input(type='hidden' name='team_id' value=team.id)
+              input(type='hidden' name="yelp" value=homefield)
+              button.waves-effect.waves-light.btn-largeButton.red(type="submit" name='action' style={padding: "10px", color:'white', font: '20px'}) Submit #{homefield.name} 
 
             
 
