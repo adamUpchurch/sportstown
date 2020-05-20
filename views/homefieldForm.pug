@@ -1,7 +1,7 @@
 extends layout
 block scripts
-  link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css")
-  link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
+    style
+      include ../public/css/main.css
 
 block content
   if newHomeField
@@ -43,7 +43,7 @@ block content
             for team in teams
               option(value=team.id) #{team.name}
       .input-group
-        input.form-control(type='text' name="location" placeholder="(City, State) or Zip")
-        input.form-control(type='text' name="term" placeholder="Name of the place")
+        input.input-field(type='text' name="location" placeholder=" (City, State) or Zip" style={margin: '10px 0px 0px 0px', background: 'white', color: 'black'})
+        input.input-field(type='text' name="term" placeholder=" Name of the place" style={margin: '10px 0px 10px 0px', background: 'white', color: 'black'})
         .input-group-append
           button.btn.btn-outline-secondary Submit

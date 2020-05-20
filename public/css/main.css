@@ -30,6 +30,10 @@ p {
   padding: 0;
   margin-left: 10px;
 }
+.input-field {
+  color: #002540;
+  background-color: white;
+}
 
 .logo:hover {
   text-decoration: none;
@@ -49,6 +53,11 @@ button span {
 
 #footer {
   padding-top: 50px;
+}
+
+#map {
+  height: 50%;
+  width: 100%;
 }
 
 .card-text {
