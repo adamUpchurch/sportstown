@@ -18,17 +18,18 @@ router.get('/google', passport.authenticate('google', {
     scope: ['profile']
 }));
 
-// callback route for google to redirect to
-// hand control to passport to use code to grab profile info
-router.get('/google/redirect', passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
+router.get('/google/redirect', 
+  passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
     res.redirect('/');
 });
 
-// auth with google+
-router.get('/facebook', passport.authenticate('google', {
-    scope: ['profile']
-}));
+router.get('/facebook',
+  passport.authenticate('facebook')
+);
 
-
+router.get('/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/login' }), (req, res) => {
+      res.redirect('/')
+  });
 
 module.exports = router;

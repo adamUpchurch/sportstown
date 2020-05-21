@@ -1,6 +1,7 @@
 var passport        = require('passport'),
     GoogleStrategy  = require('passport-google-oauth').OAuth2Strategy,
-    // {Passport}      = require('./keys'),
+    FacebookStrategy = require('passport-facebook').Strategy,
+
     {User}          = require('../models');
 
 
@@ -11,12 +12,10 @@ passport.deserializeUser((id, done) => User.findById(id).then(user => done(null,
 
 passport.use(
     new GoogleStrategy({
-        // options for google strategy
         clientID: process.env.PASSPORT_GOOGLE_CLIENT_ID,
         clientSecret: process.env.PASSPORT_GOOGLE_CLIENT_SECRET,
         callbackURL: '/auth/google/redirect'
     }, (accessToken, refreshToken, profile, done) => {
-        // passport callback function
         var user = new User({
             username: profile.displayName,
             googleID: profile.id,
@@ -35,3 +34,30 @@ passport.use(
         })
     })
 )
+
+passport.use(new FacebookStrategy({
+    clientID: process.env.FACEBOOK_APP_ID,
+    clientSecret: process.env.FACEBOOK_APP_SECRET,
+    callbackURL: "/auth/facebook/callback",
+    profileFields: ['id', 'displayName', 'email']
+  },
+  function(accessToken, refreshToken, profile, done) {
+      console.log(profile)
+    var user = new User({
+        username: profile.displayName,
+        facebookID: profile.id,
+    })
+
+    User.findOne({facebookID: profile.id}).then(currentUser =>{
+        debugger
+        console.log(profile)
+        console.log(profile.id)
+        if(currentUser) {
+            done(null, currentUser)
+        }
+        else {
+            new User(user).save().then( newUser => done(null, newUser))
+        }
+    })
+  }
+));
