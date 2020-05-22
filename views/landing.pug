@@ -6,6 +6,7 @@ block scripts
       
 
 block content
+  div
     h4 Find the best place to watch your team.
     form(action="", method="GET")
       div.input-group
@@ -15,8 +16,9 @@ block content
         button.waves-effect.waves-light.btn.green
           span Find Homefields
     #map
+    #listings
     script
-      include ../public/js/maps.js
+      include ../public/js/index.js
 
 block lastScripts
     

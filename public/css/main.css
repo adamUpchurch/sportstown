@@ -63,6 +63,9 @@ button span {
 #footer {
   padding-top: 50px;
 }
+.listing {
+  color: white;
+}
 
 #map {
   height: 50%;
