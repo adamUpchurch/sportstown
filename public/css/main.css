@@ -42,13 +42,22 @@ p {
   opacity: 0.9;
 }
 
-h3 {
+h4 {
   font-family: "Anton", sans-serif;
   color: var(--color-grey-light-1);
 }
 
 button span {
   margin-left: 10px;
+}
+
+.btn {
+  height: 34px;
+}
+
+.custom-select {
+  margin-right: 10px;
+  border-radius: 2px;
 }
 
 #footer {
