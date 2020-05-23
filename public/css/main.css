@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
 :root {
-  --color-primary: #eb2f64;
+  --color-primary: #F44336;
   --color-primary-light: #FF3366;
   --color-primary-dark: #BA265D;
   --color-grey-light-1: #faf9f9;
@@ -40,6 +40,7 @@ p {
   font-size: 3.2rem;
   color: var(--color-grey-light-1);
   opacity: 0.9;
+  
 }
 
 h4 {
@@ -50,9 +51,21 @@ h4 {
 button span {
   margin-left: 10px;
 }
+button span:hover {
+  margin-left: 10px;
+  color: white;
+}
 
-.btn {
+.button {
   height: 34px;
+  background-color: var(--color-primary);
+  box-shadow: 5px 5px white;
+}
+
+.button:hover {
+  color: white;
+  background-color: var(--color-primary);
+  box-shadow: 3px 3px white;
 }
 
 .custom-select {
@@ -63,13 +76,18 @@ button span {
 #footer {
   padding-top: 50px;
 }
+
 .listing {
   color: white;
+  border: 1px solid white;
+  padding: 10px;
+  margin-bottom: 10px;
 }
 
 #map {
   height: 50%;
   width: 100%;
+  /* box-shadow: 5px 5px var(--color-primary); */
 }
 
 .card-text {

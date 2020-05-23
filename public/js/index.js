@@ -48,7 +48,7 @@ function addMarker(team) {
 var template = (locals) => {
     
     
-    var temp = "<ul>"
+    var temp = "<ul style='padding-top: 10px;'>"
     console.log(locals)
     locals.forEach( function(local) {    
         console.log(local)
