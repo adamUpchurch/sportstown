@@ -1,7 +1,7 @@
 let db = require('./models/index')
 
 
-const nbaTeams = [
+var nbaTeams = [
 {name: "Atlanta Hawks", logo: "", city: "Atlanta"},
 {name: "Boston Celtics", logo: "", city: "Boston"},
 {name: "Brooklyn Nets", logo: "", city: "Brooklyn"},
@@ -33,7 +33,7 @@ const nbaTeams = [
 {name: "Utah Jazz", logo: "", city: "Salt Lake City"},
 {name: "Washington Wizards", logo: "", city: "Washington"}
 ]
-const nflTeams = [
+var nflTeams = [
 {name: "Arizona Cardinals", logo: "", city: "Arizona"},
 {name: "Atlanta Falcons", logo: "https://sportstown.s3.us-east-2.amazonaws.com/atlantafalcons.png", city: "Atlanta"},
 {name: "Baltimore Ravens", logo: "", city: "Baltimore"},
@@ -67,7 +67,7 @@ const nflTeams = [
 {name: "Tennessee Titans", logo: "", city: "Nashville"},
 {name: "Washington Redskins", logo: "", city: "Washington"}
 ]
-const mlbTeams = [
+var mlbTeams = [
 {name: "Atlanta Braves", logo: "", city: "Atlanta"},
 {name: "Miami Marlins", logo: "", city: "Miami"},
 {name: "New York Mets", logo: "", city: "New York"},
@@ -99,7 +99,7 @@ const mlbTeams = [
 {name: "Seattle Mariners", logo: "", city: "Seattle"},
 {name: "Texas Rangers", logo: "", city: "Dallas"}
 ]
-const nhlTeams =[
+var nhlTeams =[
 {name: "Anaheim Ducks", logo: "", city: "Anaheim"},
 {name: "Arizona Coyotes", logo: "", city: "Arizona"},
 {name: "Boston Bruins", logo: "", city: "Boston"},
@@ -132,6 +132,38 @@ const nhlTeams =[
 {name: "Washington Capitals", logo: "", city: "Washington"},
 {name: "Winnipeg Jets", logo: "", city: "Winnipeg"}
 ]
+var mlsTeams = [
+    {name: "Atlanta United FC", logo: "", city: "Atlanta"},
+    {name: "Austin FC", logo: "", city: "Austin"},
+    {name: "Chicago Fire", logo: "", city: "Chicago"},
+    {name: "Colorado Rapids", logo: "", city: "Colorado"},
+    {name: "Columbus Crew SC", logo: "", city: "Columbus"},
+    {name: "D.C. United", logo: "", city: "D.C."},
+    {name: "FC Dallas", logo: "", city: "Dallas"},
+    {name: "Houston Dynamo", logo: "", city: "Houston"},
+    {name: "Inter Miami CF", logo: "", city: "Miami"},
+    {name: "LA Galaxy", logo: "", city: "Los Angelse"},
+    {name: "Los Angeles FC", logo: "", city: "Los Angeles"},
+    {name: "Minnesota United FC", logo: "", city: "Minnesota"},
+    {name: "Montreal Impact", logo: "", city: "Montreal"},
+    {name: "Nashville SC", logo: "", city: "Nashville"},
+    {name: "New England Revolution", logo: "", city: "Boston"},
+    {name: "New York City FC", logo: "", city: "New York"},
+    {name: "New York Red Bulls", logo: "", city: "New York"},
+    {name: "Orlando City SC", logo: "", city: "Orlando"},
+    {name: "Philadelphia Union", logo: "", city: "Philadelphia"},
+    {name: "Portland Timbers", logo: "", city: "Portland"},
+    {name: "Real Salt Lake", logo: "", city: "Salt Lkae"},
+    {name: "Sacremento Republic FC", logo: "", city: "Sacremento"},
+    {name: "San Jose Earthquakes", logo: "", city: "San Jose"},
+    {name: "Seattle Sounders FC", logo: "", city: "Seattle"},
+    {name: "Sporting Kansas City", logo: "", city: "Kansas City"},
+    {name: "St. Louis MLS Team", logo: "", city: "St Louis"},
+    {name: "Toronto FC", logo: "", city: "Toronto"},
+    {name: "Vancouver Whitecaps FC" logo: "", city: "Vancouver"}
+    ]
+
+
 const majorFutbol =[
     "Inter Milian",
     "AS Roman",
@@ -155,7 +187,7 @@ let teams = [
     nflTeams,
     mlbTeams,
     nhlTeams,
-    majorFutbol
+    mlsTeams
 ]
 
 let sports = [
@@ -283,37 +315,6 @@ let colleges = [
 "Virginia Tech",
 "Wake Forest University",
 "West Virginia University"
-]
-
-let mls = [
-{name: "Atlanta United FC", logo: "", city: "Atlanta"},
-{name: "Austin FC", logo: "", city: "Austin"},
-{name: "Chicago Fire", logo: "", city: "Chicago"},
-{name: "Colorado Rapids", logo: "", city: "Colorado"},
-{name: "Columbus Crew SC", logo: "", city: "Columbus"},
-{name: "D.C. United", logo: "", city: "D.C."},
-{name: "FC Dallas", logo: "", city: "Dallas"},
-{name: "Houston Dynamo", logo: "", city: "Houston"},
-{name: "Inter Miami CF", logo: "", city: "Miami"},
-{name: "LA Galaxy", logo: "", city: "Los Angelse"},
-{name: "Los Angeles FC", logo: "", city: "Los Angeles"},
-{name: "Minnesota United FC", logo: "", city: "Minnesota"},
-{name: "Montreal Impact", logo: "", city: "Montreal"},
-{name: "Nashville SC", logo: "", city: "Nashville"},
-{name: "New England Revolution", logo: "", city: "Boston"},
-{name: "New York City FC", logo: "", city: "New York"},
-{name: "New York Red Bulls", logo: "", city: "New York"},
-{name: "Orlando City SC", logo: "", city: "Orlando"},
-{name: "Philadelphia Union", logo: "", city: "Philadelphia"},
-{name: "Portland Timbers", logo: "", city: "Portland"},
-{name: "Real Salt Lake", logo: "", city: "Salt Lkae"},
-{name: "Sacremento Republic FC", logo: "", city: "Sacremento"},
-{name: "San Jose Earthquakes", logo: "", city: "San Jose"},
-{name: "Seattle Sounders FC", logo: "", city: "Seattle"},
-{name: "Sporting Kansas City", logo: "", city: "Kansas City"},
-{name: "St. Louis MLS Team", logo: "", city: "St Louis"},
-{name: "Toronto FC", logo: "", city: "Toronto"},
-{name: "Vancouver Whitecaps FC" logo: "", city: "Vancouver"}
 ]
 
 mls.forEach(async team => {
