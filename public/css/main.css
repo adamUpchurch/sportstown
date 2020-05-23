@@ -17,6 +17,10 @@ body {
   background: #002540;
 }
 
+h3 {
+  color: white !important;
+}
+
 p {
   color: white;
 }

@@ -47,16 +47,11 @@ module.exports = {
     },
     findByidForMap: (req, res) => {
         db.Team.findById(req.params.id)
+            .sort({"yelp.location.state": 1 })
             .populate("Homefields")
             .then(team => {
-                let geometries = team.homefields.map(homefield => homefield.geometry)
-                let locations = [
-                    {"geometry":{"type":"Point","coordinates":[37.12,-122.21],"content":"<h1>Taco Bell</h1>" + "<a href=\"https://www.yelp.com/biz/taco-bell-san-francisco-9?adjust_creative=L29oZl_jxqGjExoW2NqMcw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=L29oZl_jxqGjExoW2NqMcw\" target=\"_blank\">Go to their yelp</a>"}},
-                    {"geometry":{"type":"Point","coordinates":[32.12,-132.21],"content":"<h1>Taco Bell</h1>" + "<a href=\"https://www.yelp.com/biz/taco-bell-san-francisco-9?adjust_creative=L29oZl_jxqGjExoW2NqMcw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=L29oZl_jxqGjExoW2NqMcw\" target=\"_blank\">Go to their yelp</a>"}}
-                    
-                ]
-                res.send({locations: team.homefields})
-                // res.send({locations})   // user to test small chanages
+                console.log(team)
+                res.send({team: team})
             })
             .catch(error => res.send(error))
     }
