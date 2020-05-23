@@ -52,7 +52,7 @@ var template = (locals) => {
     console.log(locals)
     locals.forEach( function(local) {    
         console.log(local)
-        temp += `<li class='listing'> ${local.yelp.name} - ${local.yelp.location.city} - <span><a href='${local.yelp.url}'>Check out their yelp</a></span></li>`
+        temp += `<li class='listing'> ${local.yelp.name} - ${local.yelp.location.city} - <span><a href='${local.yelp.url}' target="_blank">Check out their yelp</a></span></li>`
     })
 
     temp = temp + "</ul>"
