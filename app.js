@@ -35,6 +35,7 @@ app.use("/team", teamRoutes); // TODO
 app.use("/auth", authRoutes); // TODO
 // app.use('/user', userRoutes); // TODO
 
+
 app.get("/", async (req, res) => {
   let user = req.user
   console.log(user)
