@@ -142,9 +142,9 @@ def download_logo(league, name):
     req.urlretrieve(URL, 'public/images/team_logos/' + league + '/' + name + '.png')
     time.sleep(3)
 
-for league in leagues:
+for league in [["nba","Atlanta Hawks","Boston Celtics"]]:
     for team in league:
         team = '-'.join(team.split(' ')) 
         print(team)
-        # download_logo("test", team)
+        download_logo("test", team)
 

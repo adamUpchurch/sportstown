@@ -6,16 +6,13 @@ var teamSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    mascot: {
-        type: String,
-    },
     city: {
         type: String,
     },
-    country: {
+    league: {
         type: String,
     },
-    image: {
+    logo: {
         type: String,
     },
     homefields: [{

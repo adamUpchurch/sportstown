@@ -5,8 +5,8 @@ block content
   a.btn.btn-primary(href="/team/create") Add your team
   each team in teams
     a(href=team.url).row.border-bottom
-      if team.img
-        img(src=team.img style={width: "150px", height: "150px"}).col-3
+      if team.logo
+        img(src=team.logo style={width: "auto", height: "150px"}).col-3
       else
         img(src="https://amerikicklanghorne.com/wp-content/uploads/2017/04/default-image.jpg" style={width: "150px", height: "150px"}).col-3
       div.col

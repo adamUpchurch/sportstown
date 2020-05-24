@@ -1,8 +1,9 @@
 extends layout
 
 block content
-    h1=team.name
-    if team.img
-        img(src=team.img style={width: "150px", height: "150px"}).col-3
+    h3=team.name
+    if team.logo
+        img(src=team.logo style={width: 'auto', height: "150px"}).col-3
+        
     else
         img(src="https://amerikicklanghorne.com/wp-content/uploads/2017/04/default-image.jpg" style={width: "150px", height: "150px"}).col-3
