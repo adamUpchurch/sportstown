@@ -10,7 +10,15 @@ function getUrlVars() {
 
 function getLocations(teamid) {
     const url='/team/map/' + teamid;
+    
+    var x = document.getElementById("team_select");
 
+    var i;
+    for (i = 0; i < x.length; i++) {
+      if(teamid == x.options[i].value) {
+        document.getElementById("team_select").selectedIndex = i
+      }
+    }  
     return fetch(url)
             .then((response) => response.json())
             .then(({team}) => {
@@ -45,18 +53,14 @@ function addMarker(homefields, logo) {
   render(spots, template, '#listings');
 }
 
-var template = (locals) => {
-    
-    
+var template = (locals) => {  
     var temp = "<ul style='padding-top: 10px;'>"
     console.log(locals)
     locals.forEach( function(local) {    
         console.log(local)
         temp += `<li class='listing'> ${local.yelp.name} - ${local.yelp.location.city}, ${local.yelp.location.state} - <span><a href='${local.yelp.url}' target="_blank">Check out their yelp</a></span></li>`
     })
-
     temp = temp + "</ul>"
-    
     console.log(temp)
 
     return temp

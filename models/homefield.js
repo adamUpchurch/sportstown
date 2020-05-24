@@ -19,9 +19,7 @@ var homefieldSchema = new mongoose.Schema({
         default: false
     },
     status: {
-        enum: [ "approved", "rejected",  null ],
-        description: "can only be one of the enum values and is required",
-        default: "approved"
+        enum: [ "approved", "rejected",  null ]
     }
 })
 

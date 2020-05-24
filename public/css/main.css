@@ -39,6 +39,14 @@ p {
   background-color: white;
 }
 
+.white_card_shadow {
+  color: black;
+  background-color: white;
+  /* border: 1px solid white; */
+  padding: 10px;
+  box-shadow: 10px 10px var(--color-primary);
+}
+
 .logo:hover {
   text-decoration: none;
   font-size: 3.2rem;
@@ -49,6 +57,21 @@ p {
 h4 {
   font-family: "Anton", sans-serif;
   color: var(--color-grey-light-1);
+}
+.team_profile {
+  margin: 20px 0px;
+}
+
+.team_profile h4 {
+  color: black;
+}
+.homefield_page h4 {
+  color: black;
+}
+
+
+.homefield_page {
+  margin: 20px 0px;
 }
 
 button span {
@@ -81,10 +104,11 @@ button span:hover {
 }
 
 .listing {
-  color: white;
-  border: 1px solid white;
   padding: 10px;
   margin-bottom: 10px;
+  background-color: white;
+  padding: 10px;
+  box-shadow: 5px 5px var(--color-primary);
 }
 
 #map {

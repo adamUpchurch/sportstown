@@ -14,7 +14,9 @@ module.exports = {
     },
     findbyid: (req, res) => {
         db.Homefield.findById(req.params.id)
+            .populate("teams")
             .then(homefield=> {
+                console.log(homefield)
                 res.render('homefield', {homefield})
             })
             // need to rerender form with errors and stuff

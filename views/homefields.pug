@@ -3,7 +3,7 @@ extends layout
 block content
   h4 Homefields
   each homefield in homefields
-    a(href=homefield.url).row.border-bottom.team_listing
+    a(href=homefield.url).row.border-bottom.team_listing.white_card_shadow
       if homefield.yelp.image_url
         img(src=homefield.yelp.image_url style={width: "150px", height: "150px"}).col-3
       else

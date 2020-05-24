@@ -10,9 +10,9 @@ block content
     h4 Find the best place to watch your team.
     form(action="", method="GET")
       div.input-group
-        select.custom-select(name="team_id")
+        select.custom-select(name="team_id", id="team_select")
           for team in teams
-            option(value=team.id) #{team.name}
+            option(value=team.id, id=team.id) #{team.name}
         button.waves-effect.waves-light.btn.button
           span Find Homefields
     #map

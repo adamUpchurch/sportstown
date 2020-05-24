@@ -1,10 +1,20 @@
 extends layout
 
 block content
-
-    h3=team.name
-    if team.logo
-        img(src=team.logo style={width: 'auto', height: "150px"}).col-3
-        
-    else
-        img(src="https://amerikicklanghorne.com/wp-content/uploads/2017/04/default-image.jpg" style={width: "150px", height: "150px"}).col-3
+    .team_profile.white_card_shadow
+        h4=team.name
+        if team.logo
+            img(src=team.logo style={width: 'auto', height: "150px"}).col-3
+            
+        else
+            img(src="https://amerikicklanghorne.com/wp-content/uploads/2017/04/default-image.jpg" style={width: "150px", height: "150px"}).col-3
+    h4 Homefields
+    each homefield in team.homefields
+      a(href=homefield.url).row.border-bottom.team_listing.white_card_shadow
+        if homefield.yelp.image_url
+            img(src=homefield.yelp.image_url style={width: "150px", height: "150px"}).col-3
+        else
+            img(src="https://amerikicklanghorne.com/wp-content/uploads/2017/04/default-image.jpg" style={width: "150px", height: "150px"}).col-3
+        div.col
+            h3.team_listing_name=homefield.yelp.name
+            h3.team_listing_name #{homefield.yelp.location.city}, #{homefield.yelp.location.state}
