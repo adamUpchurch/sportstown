@@ -15,6 +15,10 @@ var teamSchema = new mongoose.Schema({
     logo: {
         type: String,
     },
+    status: {
+        enum: [ "approved", "pending", "rejected",  null ],
+        description: "can only be one of the enum values and is required"
+    },
     homefields: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Homefield'

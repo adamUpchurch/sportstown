@@ -13,6 +13,16 @@ var homefieldSchema = new mongoose.Schema({
         type: "Object",
         require: true
     },
+    verified: {
+        type: "Boolean",
+        require: true,
+        default: false
+    },
+    status: {
+        enum: [ "approved", "rejected",  null ],
+        description: "can only be one of the enum values and is required",
+        default: "approved"
+    }
 })
 
 // Virtual 

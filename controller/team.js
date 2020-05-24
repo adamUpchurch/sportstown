@@ -12,6 +12,7 @@ module.exports = {
         res.render('teamForm', {isAuthenticated: req.isAuthenticated()})
     },
     create: (req, res) => {
+        var team = {...req.body, status: "requested"}
         db.Team.create(req.body)
             .then(team => {
                 res.render("team", {team, isAuthenticated: req.isAuthenticated()})
