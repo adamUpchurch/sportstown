@@ -23,8 +23,6 @@ router.get('/google/redirect',
     res.redirect('/');
 });
 
-router.get('/facebook/callback/failure', (req, res) => res.render("login", {error: "failed"}))
-
 router.get('/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/login' }), (req, res) => {
       res.redirect('/')
