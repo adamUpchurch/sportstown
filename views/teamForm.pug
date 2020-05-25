@@ -1,11 +1,13 @@
 extends layout
 
 block content
-  h1 Request a new team
+  h4 Request a new team
   form(action="/", method="post")
-    input(type='text' name="team" placeholder="Team Name")
-    input(type='text' name="hometown" placeholder="Hometown")
-    input(type='text' name="homefields" placeholder="Homefields")
-    input(type='text' name="mascot" placeholder="Mascot")
-    input(type='text' name="sports" placeholder="Sports")
-    button Submit
+    .input-group
+      input.input-field(type='text' name="team" placeholder="Team Name*" style={margin: '10px 0px 10px 0px', background: 'white', color: 'black'})
+      input.input-field(type='text' name="hometown" placeholder="Hometown City*" style={margin: '10px 0px 10px 0px', background: 'white', color: 'black'})
+      input.input-field(type='text' name="mascot" placeholder="Mascot" style={margin: '10px 0px 10px 0px', background: 'white', color: 'black'})
+      input.input-field(type='text' name="rivals" placeholder="Biggest Rivals" style={margin: '10px 0px 10px 0px', background: 'white', color: 'black'})
+      input.input-field(type='text' name="league" placeholder="Sport & League" style={margin: '10px 0px 10px 0px', background: 'white', color: 'black'})
+    .input-group-append
+          button.btn.btn-outline-secondary Submit

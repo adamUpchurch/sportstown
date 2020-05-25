@@ -2,20 +2,23 @@ var db = require('../models')
 
 module.exports = {
     list: (req, res) => {
+        let user = req.user
         db.Team.find().sort({name: 1})
         .then(teams => {
-            res.render('teams', {teams, isAuthenticated: req.isAuthenticated()})
+            res.render('teams', {teams, user})
         })
         .catch(error => res.send(error))
     },
     newForm: (req, res) => {
-        res.render('teamForm', {isAuthenticated: req.isAuthenticated()})
+        let user = req.user
+        res.render('teamForm', {user})
     },
     create: (req, res) => {
+        let user = req.user
         var team = {...req.body, status: "requested"}
-        db.Team.create(req.body)
-            .then(team => {
-                res.render("team", {team, isAuthenticated: req.isAuthenticated()})
+        db.Team.create(team)
+            .then(createdTeam => {
+                res.render("team",{createdTeam, user, newlyCreated: true })
             })
             .catch(error => res.send(error))
     },
@@ -28,9 +31,10 @@ module.exports = {
         .catch(error => res.send(error))
     },
     update: (req, res) => {
+        let user = req.user
         db.Team.findByIdAndUpdate(req.params.id, req.body)
             .then(team => {
-                res.render("team", {team, isAuthenticated: req.isAuthenticated()})
+                res.render("team", {team, user})
             })
             .catch(error => res.send(error))
     },
@@ -39,10 +43,11 @@ module.exports = {
             .then(_ => res.redirect('/'))
     },
     findbyid: (req, res) => {
+        let user = req.user
         db.Team.findById(req.params.id)
         .populate("homefields")
         .then(team => {
-            res.render("team", {team, isAuthenticated: req.isAuthenticated()})
+            res.render("team", {team, user})
         })
         .catch(error => res.send(error))
     },

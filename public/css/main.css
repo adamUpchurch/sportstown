@@ -13,6 +13,19 @@
   --color-shadow-dark: 0 2rem 6rem rgba(0,0,0, 0.3);
 }
 
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: var(--color-grey-dark-1);
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: var(--color-grey-dark-1)
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: var(--color-grey-dark-1)
+}
+
 body {
   background: #002540;
 }
@@ -37,6 +50,7 @@ p {
 .input-field {
   color: #002540;
   background-color: white;
+  
 }
 
 .white_card_shadow {

@@ -6,31 +6,35 @@ var db      = require('../models'),
 
 module.exports = {
     list: (req, res)=>{
+        let user = req.user
         db.Homefield.find().sort({name: 1})
             .then(homefields=> {
-                res.render('homefields', {homefields})}
+                res.render('homefields', {homefields, user})}
                 )
             .catch(err=> res.send(err))
     },
     findbyid: (req, res) => {
+        let user = req.user
         db.Homefield.findById(req.params.id)
             .populate("teams")
             .then(homefield=> {
                 console.log(homefield)
-                res.render('homefield', {homefield})
+                res.render('homefield', {homefield, user})
             })
             // need to rerender form with errors and stuff
             .catch(error => res.send(error))
     },
     newForm: async (req, res) => {
+        let user = req.user
         var {location, term, team} = url.parse(req.url, true).query;
+
         if (!location && !term && !team) {
           location = location ? location : "Yo, need a city or zip!"
           term = term ? term : "Where is your homefield?"
           team = team ? team : "You need to select a team"
           let teams = await db.Team.find().sort({name: 1})
             .then(teams=> teams).catch(error => error)
-          res.render('homefieldForm', {teams, location, term, team})
+          res.render('homefieldForm', {teams, location, term, team,user})
         } 
         
         else {
@@ -40,17 +44,19 @@ module.exports = {
             .then(homefields => {
                 let locations = homefields.jsonBody.businesses
                 if (!locations) {
-                    res.render('homefieldForm', {error: "no locations found"})
+                    res.render('homefieldForm', {error: "no locations found", user})
                 }
                 res.render("homefieldForm", {
                     homefields: homefields.jsonBody.businesses.slice(0, 4),
                     team,
-                    newHomeField: true
+                    newHomeField: true,
+                    user
                 })
             })
         }
     },
     create: async (req, res) => {
+        let user = req.user
         var {team_id, yelp} = req.body
         var homefield = {yelp: JSON.parse(yelp)}
         
@@ -108,14 +114,16 @@ module.exports = {
             .catch(error => res.redirect('/'))
     },
     editForm: async(req, res) => {
+        let user = req.user
         await db.Homefield.findById(req.params.id)
         .populate('teams')
         .then(homefield=> {
-            res.render('homefieldForm', {homefield, edit: true})
+            res.render('homefieldForm', {homefield, edit: true, user})
         })
         .catch(error => res.send(error))
     },
     update: (req, res) => {
+        let user = req.user
         db.Homefield.findByIdAndUpdate(req.params.id, req.body)
             .then(homefield => {
                 res.redirect(homefield.url)
@@ -123,9 +131,10 @@ module.exports = {
             .catch(error => res.send(error))
     },
     delete: (req, res) => {
+        let user = req.user
         console.log('delelting thisbitch')
         db.Homefield.findByIdAndDelete(req.params.id)
-            .then(_ => res.render('/landing'))
+            .then(_ => res.render('/landing', {user}))
             .catch(error => res.send(error))
     }
 }

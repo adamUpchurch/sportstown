@@ -37,7 +37,8 @@ app.use("/auth", authRoutes); // TODO
 
 
 app.get("/privacy", (req, res) => {
-    res.render("privacy");
+  let user = req.user
+    res.render("privacy", {user})
 });
 app.get("/", async (req, res) => {
   let user = req.user
