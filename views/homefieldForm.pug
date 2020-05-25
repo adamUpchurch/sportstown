@@ -47,7 +47,7 @@ block content
             for team in teams
               option(value=team.id) #{team.name}
       .input-group
-        input.input-field(type='text' name="location" placeholder=" (City, State) or Zip" style={margin: '10px 0px 0px 0px', background: 'white', color: 'black'})
-        input.input-field(type='text' name="term" placeholder=" Name of the place" style={margin: '10px 0px 10px 0px', background: 'white', color: 'black'})
+        input.input-field(type='text' name="location" placeholder=" (City, State) or Zip" style={margin: '10px 0px 0px 0px', background: 'white', color: 'black'} required)
+        input.input-field(type='text' name="term" placeholder=" Name of the place" style={margin: '10px 0px 10px 0px', background: 'white', color: 'black'} required)
         .input-group-append
           button.btn.btn-outline-secondary Submit
