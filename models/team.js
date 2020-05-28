@@ -15,6 +15,10 @@ var teamSchema = new mongoose.Schema({
     logo: {
         type: String,
     },
+    createdBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
     status: {
         enum: [ "approved", "pending", "rejected",  null ]
     },

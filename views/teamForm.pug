@@ -2,12 +2,10 @@ extends layout
 
 block content
   h4 Request a new team
-  form(action="/", method="post")
+  form(action="", method="post")
     .input-group
-      input.input-field(type='text' name="team" placeholder="Team Name*" style={margin: '10px 0px 10px 0px', background: 'white', color: 'black'} require)
-      input.input-field(type='text' name="hometown" placeholder="Hometown City*" style={margin: '10px 0px 10px 0px', background: 'white', color: 'black'} require)
-      input.input-field(type='text' name="mascot" placeholder="Mascot" style={margin: '10px 0px 10px 0px', background: 'white', color: 'black'})
-      input.input-field(type='text' name="rivals" placeholder="Biggest Rivals" style={margin: '10px 0px 10px 0px', background: 'white', color: 'black'})
-      input.input-field(type='text' name="league" placeholder="Sport & League" style={margin: '10px 0px 10px 0px', background: 'white', color: 'black'})
-    .input-group-append
-          button.btn.btn-outline-secondary Submit
+      input.input-field(type='text' name="name" placeholder="Team Name*" style={margin: '10px 0px 10px 0px', background: 'white', color: "#a9a9a9"} require)
+      input.input-field(type='text' name="hometown" placeholder="Hometown City*" style={margin: '10px 0px 10px 0px', background: 'white', color: "#a9a9a9"} require)
+      input.input-field(type='text' name="league" placeholder="Sport & League" style={margin: '10px 0px 10px 0px', background: 'white', color: "#a9a9a9"})
+      .input-group-append
+        button.btn.btn-outline-secondary Submit

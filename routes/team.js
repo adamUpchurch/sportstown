@@ -16,13 +16,9 @@ const authCheck = (req, res, next) => {
     else next()
   }
 
-router.route('/')
- .get(adminCheck, teams.list)
-
- router.route('/create')
- .get(authCheck, teams.newForm)
+router.route('/create')
+ .get(teams.newForm)
  .post(teams.create)
- .post(authCheck, teams.create)
 
 router.route('/map/:id')
  .get(teams.findByidForMap)
@@ -33,6 +29,11 @@ router.route('/:id/edit')
  .delete(authCheck, teams.delete) // todo
 
 router.route('/:id')
- .get(authCheck, teams.findbyid)
-  
-module.exports = router;
+ .get(teams.findbyid)
+
+
+router.route('/')
+ .get(adminCheck, teams.list)
+
+
+ module.exports = router;

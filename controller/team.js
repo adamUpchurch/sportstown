@@ -14,11 +14,11 @@ module.exports = {
         res.render('teamForm', {user})
     },
     create: (req, res) => {
-        let user = req.user
-        var team = {...req.body, status: "requested"}
+        let user = req.user ? req.user : ""
+        var team = {...req.body, status: "pending", createdBy: user}
         db.Team.create(team)
             .then(createdTeam => {
-                res.render("team",{createdTeam, user, newlyCreated: true })
+                res.render('landing') // need to add a thank you page or something
             })
             .catch(error => res.send(error))
     },
