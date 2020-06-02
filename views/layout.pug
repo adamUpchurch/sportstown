@@ -16,7 +16,6 @@ html
           if user
               li 
                 a.waves-effect.waves-light.btn.blue(href="/homefield/create") Add a homefield
-                a.waves-effect.waves-light.btn.blue(href="/team/create") Request a team
           else
               li 
                 a.waves-effect.waves-light.btn.blue(href="/auth/google") Google Login
@@ -26,10 +25,15 @@ html
         block lastScripts
         block foot
             #footer
-            if user && user.admin === true
-              a(href="/team") Teams
-              a(href="/homefield") Homefields
             if user
-              a(href="/auth/logout") logout
+              li 
+                a.waves-effect.waves-light.btn.blue(href="/team/create") Request a team
+              li
+                a.waves-effect.waves-light(href="/auth/logout") Log out
+            if user && user.admin === true
+              li
+                a(href="/team") Teams
+              li
+                a(href="/homefield") Homefields
             p Sportstown built by 
-              a(href="http://www.twitter.com/theAdamUpchurch") Adam Upchurch
+              a(href="linktr.ee/aupchurch") Adam Upchurch

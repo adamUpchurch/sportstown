@@ -18,7 +18,7 @@ module.exports = {
         var team = {...req.body, status: "pending", createdBy: user}
         db.Team.create(team)
             .then(createdTeam => {
-                res.render('landing') // need to add a thank you page or something
+                res.render('landing', {newlyCreated: true}) // need to add a thank you page or something
             })
             .catch(error => res.send(error))
     },
