@@ -25,39 +25,57 @@
 ::-ms-input-placeholder { /* Microsoft Edge */
   color: var(--color-grey-dark-1)
 }
+/* ----------- iPhone X ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3) { 
+
+}
+
+/* Portrait */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: portrait) { 
+
+}
+
+/* Landscape */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: landscape) { 
+
+}
 
 body {
   background: #002540;
-}
-
-h3 {
   color: white !important;
-}
-
-p {
-  color: white;
 }
 
 .logo {
   font-family: "Anton", sans-serif;
   position: absolute;
-  color: #fff;
   display: inline-block;
   font-size: 3.1rem;
   padding: 0;
   margin-left: 10px;
 }
+
 .input-field {
   color: #002540;
-  background-color: white;
-  
+  background-color: white;  
 }
 
 .white_card_shadow {
   color: black;
   margin-top: 15px;
   background-color: white;
-  /* border: 1px solid white; */
   padding: 10px;
   box-shadow: 10px 10px var(--color-primary);
 }
@@ -73,17 +91,84 @@ h4 {
   font-family: "Anton", sans-serif;
   color: var(--color-grey-light-1);
 }
-.team_profile {
-  margin: 20px 0px;
-}
-
 .team_profile h4 {
   color: black;
 }
 .homefield_page h4 {
   color: black;
 }
+.button {
+  height: 34px;
+  background-color: var(--color-primary);
+  box-shadow: 5px 5px white;
+}
+.button:hover {
+  color: white;
+  background-color: var(--color-primary);
+  box-shadow: 3px 3px white;
+}
 
+.card-text {
+  color: var(--color-grey-dark-1);
+}
+
+h3.team_listing_name {
+  color: black !important;
+  text-decoration: none !important;
+}
+
+.search-homefield-button {
+  /* background-position: 25px 0px; */
+  box-sizing: border-box;
+  background: white url("https://eswarasai.com/projects/social-login/img/facebook.svg") no-repeat scroll 5px 0px/30px 50px padding-box border-box;
+  border: 1px solid #3c5a9a;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  height: 38px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  vertical-align: middle;
+  width: 25%;
+  border-radius: 3px;
+  margin: auto;
+  outline: white none 0px;
+  transition: all 0.2s cubic-bezier(0.72, 0.01, 0.56, 1) 0s;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.search-homefield-button:hover {
+  border-color: #3c5a9a;
+  background: #3c5a9a url("https://eswarasai.com/projects/social-login/img/facebook-white.svg") no-repeat scroll 5px 0px/30px 50px padding-box border-box;
+  -webkit-transition: all 0.8s ease-out;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease-out;
+}
+
+.search-homefield-button span {
+  box-sizing: border-box;
+  color: black;
+  cursor: pointer;
+  text-transform: uppercase;
+  border: 0px none white;
+  outline: white none 0px;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.team_profile {
+  margin: 20px 0px;
+}
 
 .homefield_page {
   margin: 20px 0px;
@@ -95,18 +180,6 @@ button span {
 button span:hover {
   margin-left: 10px;
   color: white;
-}
-
-.button {
-  height: 34px;
-  background-color: var(--color-primary);
-  box-shadow: 5px 5px white;
-}
-
-.button:hover {
-  color: white;
-  background-color: var(--color-primary);
-  box-shadow: 3px 3px white;
 }
 
 .custom-select {
@@ -131,10 +204,14 @@ button span:hover {
   width: 100%;
   /* box-shadow: 5px 5px var(--color-primary); */
 }
-
-.card-text {
-  color: var(--color-grey-dark-1);
+.team_listings_list {
+  margin-top: 10px;
 }
+
+li {
+  list-style: none;
+}
+
 
 .social-button {
   background-position: 25px 0px;
@@ -161,13 +238,7 @@ button span:hover {
   transition: all 0.3s ease;
 }
 
-h3.team_listing_name {
-    color: black !important;
-    text-decoration: none !important;
-}
-.team_listings_list {
-  margin-top: 10px;
-}
+
 .team_listing {
     color: black;
     background-color: white;
@@ -297,55 +368,6 @@ h3.team_listing_name {
 
 #twitter-connect:hover span {
   color: #FFF;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -ms-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
-.search-homefield-button {
-  /* background-position: 25px 0px; */
-  box-sizing: border-box;
-  background: white url("https://eswarasai.com/projects/social-login/img/facebook.svg") no-repeat scroll 5px 0px/30px 50px padding-box border-box;
-  border: 1px solid #3c5a9a;
-  color: white;
-  cursor: pointer;
-  display: inline-block;
-  height: 38px;
-  text-align: center;
-  text-decoration: none;
-  text-transform: uppercase;
-  vertical-align: middle;
-  width: 25%;
-  border-radius: 3px;
-  margin: auto;
-  outline: white none 0px;
-  transition: all 0.2s cubic-bezier(0.72, 0.01, 0.56, 1) 0s;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -ms-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
-.search-homefield-button:hover {
-  border-color: #3c5a9a;
-  background: #3c5a9a url("https://eswarasai.com/projects/social-login/img/facebook-white.svg") no-repeat scroll 5px 0px/30px 50px padding-box border-box;
-  -webkit-transition: all 0.8s ease-out;
-  -moz-transition: all 0.3s ease;
-  -ms-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  transition: all 0.3s ease-out;
-}
-
-.search-homefield-button span {
-  box-sizing: border-box;
-  color: black;
-  cursor: pointer;
-  text-transform: uppercase;
-  border: 0px none white;
-  outline: white none 0px;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
